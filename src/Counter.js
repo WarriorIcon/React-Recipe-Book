@@ -15,11 +15,11 @@ export default class Counter extends Component {
     return (
       <ThemeContext.Consumer>
         {style => (
-          <>
+          <div>
             <button style={style} onClick={() => this.changeCount(-1) }>-</button>
             <span>{this.state.count}</span>
             <button style={style} onClick={() => this.changeCount(1) }>+</button>
-          </>
+          </div>
         )}
 
       </ThemeContext.Consumer>
