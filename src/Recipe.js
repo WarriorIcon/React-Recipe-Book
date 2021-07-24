@@ -1,11 +1,14 @@
 import React from 'react'
+import IngredientList from './IngredientList'
 
+/*Here we could instead pass down the entire recipe object as a prop like recipe={recipe} in RecipeList.js. Then in this Recipe component, destruct the props to {recipe} and access them as {recipe.name} {recipe.cookTime}, etc, without this props deconstruct*/
 export default function Recipe(props) {
-  const { 
+  const {
     name,
     cookTime,
-    servings, 
-    instructions
+    servings,
+    instructions,
+    ingredients
   } = props
   
   return (
@@ -28,6 +31,12 @@ export default function Recipe(props) {
       <div>
         <span>Instructions:</span>
         <div>{instructions}</div>
+      </div>      
+      <div>
+        <span>Ingredients:</span>
+        <div>
+          <IngredientList ingredients={ingredients} />
+        </div>
       </div>      
     </div>
   )
