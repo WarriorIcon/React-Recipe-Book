@@ -5,7 +5,7 @@ import Ingredient from './Ingredient'
 // Just store the function result in a variable and render it.
 export default function IngredientList({ingredients}) {
   const ingredientElements = ingredients.map( ingredient => {
-    return <Ingredient id={ingredient.id} {...ingredient}/>
+    return <Ingredient key={ingredient.id} {...ingredient}/>
   })
   return (
     <div>

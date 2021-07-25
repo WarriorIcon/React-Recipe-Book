@@ -1,0 +1,8 @@
+/*import a library that helps default values look the same across all browsers. */
+@import-normalize;
+@import 'font.css';
+@import 'recipe-list.css';
+
+*, *::before, *::after {
+  font-family: Gotham Rounded, sans-serif;
+}
