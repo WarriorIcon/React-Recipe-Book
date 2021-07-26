@@ -2,7 +2,7 @@ import React from 'react'
 import Recipe from './Recipe'
 
 /*Pass props.recipes from App.js to here */
-export default function RecipeList({ recipes }) { /*This destructures props.receipes into just recipes? */
+export default function RecipeList({ recipes, handleRecipeAdd }) { /*This destructures props.receipes into just recipes? */
   return (
     <div className="recipe-list">   
       <div>
@@ -14,7 +14,11 @@ export default function RecipeList({ recipes }) { /*This destructures props.rece
         })}
       </div>
       <div className="recipe-list__add-recipe-btn-container">
-        <button className="btn btn--primary">Add Recipe</button>
+        <button className="btn btn--primary"
+        onClick={handleRecipeAdd}
+        >
+          Add Recipe
+        </button>
       </div>
     </div>
   )
