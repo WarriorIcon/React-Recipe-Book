@@ -4,11 +4,13 @@ import IngredientList from './IngredientList'
 /*Here we could instead pass down the entire recipe object as a prop like recipe={recipe} in RecipeList.js. Then in this Recipe component, destruct the props to {recipe} and access them as {recipe.name} {recipe.cookTime}, etc, without this props deconstruct*/
 export default function Recipe(props) {
   const {
+    id,
     name,
     cookTime,
     servings,
     instructions,
-    ingredients
+    ingredients,
+    handleRecipeDelete
   } = props
   
   return (
@@ -17,7 +19,11 @@ export default function Recipe(props) {
         <h3 className="recipe__title">{name}</h3>
         <div>
           <button className="btn btn--primary mr-1">Edit</button>
-          <button className="btn btn--danger">Delete</button>
+          <button className="btn btn--danger"
+          onClick={() => handleRecipeDelete(id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
       <div className="recipe__row">

@@ -18,13 +18,19 @@ function App() {
       ]
     }
     
+    // Spread operator is adding a new element onto the old array. SetRecipes updates everything to the new state
     setRecipes([...recipes, newRecipe])
+  }
+
+  function handleRecipeDelete(id) {
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
   return (
     <RecipeList 
     recipes={recipes}
-    handleRecipeAdd={handleRecipeAdd} 
+    handleRecipeAdd={handleRecipeAdd}
+    handleRecipeDelete={handleRecipeDelete}
     />
   )
   

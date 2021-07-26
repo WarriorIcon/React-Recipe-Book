@@ -2,14 +2,23 @@ import React from 'react'
 import Recipe from './Recipe'
 
 /*Pass props.recipes from App.js to here */
-export default function RecipeList({ recipes, handleRecipeAdd }) { /*This destructures props.receipes into just recipes? */
+export default function RecipeList(props) { /*This destructures props.receipes into just recipes? */
+  const {
+    recipes,
+    handleRecipeAdd,
+    handleRecipeDelete
+  } = props
+  
   return (
     <div className="recipe-list">   
       <div>
         {recipes.map(recipe => {
           return (
             /* Spread operator saves time with some JSX magic by auto setting our objects' keys as prop names and assigning them the corresponding values. Long-form for the line below would be this: <Recipe key={recipe.id} name={recipe.name} cookTime={recipe.cookTime} serving={recipe.serving} instructions={recipe.instructions}/>/> */
-            <Recipe key={recipe.id} {...recipe} />
+            <Recipe 
+              key={recipe.id}
+              handleRecipeDelete={handleRecipeDelete}
+              {...recipe} />
           )
         })}
       </div>
