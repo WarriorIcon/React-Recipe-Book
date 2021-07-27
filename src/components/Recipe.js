@@ -1,8 +1,10 @@
-import React from 'react'
-import IngredientList from './IngredientList'
+import React, { useContext } from 'react';
+import IngredientList from './IngredientList';
+import { RecipeContext } from './App';
 
 /*Here we could instead pass down the entire recipe object as a prop like recipe={recipe} in RecipeList.js. Then in this Recipe component, destruct the props to {recipe} and access them as {recipe.name} {recipe.cookTime}, etc, without this props deconstruct*/
 export default function Recipe(props) {
+  const { handleRecipeDelete } = useContext(RecipeContext)
   const {
     id,
     name,
@@ -10,7 +12,6 @@ export default function Recipe(props) {
     servings,
     instructions,
     ingredients,
-    handleRecipeDelete
   } = props
   
   return (
