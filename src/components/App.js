@@ -38,17 +38,18 @@ function App() {
   function handleRecipeAdd() {
     const newRecipe = {
       id: uuidv4(),
-      name: "New",
+      name: '',
       servings: 1,
-      cookTime: '1 hour',
-      instructions: 'instr.',
+      cookTime: '',
+      instructions: '',
       ingredients: [
-        { id: uuidv4(), name: 'Name', amount: '1 tbs' }
+        { id: uuidv4(), name: '', amount: '' }
       ]
     }
     
     // Spread operator is adding a new element onto the old array. SetRecipes updates everything to the new state
     setRecipes([...recipes, newRecipe])
+    setSelectedRecipeId(newRecipe.id)
   }
 
   // take the id of the recipe we want to change and the new recipe we want to replace the old one with
