@@ -11,6 +11,7 @@ function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+  
 
   useEffect(() => {
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
@@ -18,7 +19,6 @@ function App() {
   }, [])
   
   useEffect(() => {
-    console.log('rendered')
     // we store the recipes array as a json since local storage only supports strings
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
   }, [recipes])
@@ -26,7 +26,9 @@ function App() {
   const recipeContextValue = {
     // These key value pairs have the same name and value, so we only need to specify once
     handleRecipeAdd,
-    handleRecipeDelete
+    handleRecipeDelete,
+    handleRecipeSelect,
+    handleRecipeChange
   }
 
   function handleRecipeSelect(id) {
@@ -49,6 +51,15 @@ function App() {
     setRecipes([...recipes, newRecipe])
   }
 
+  // take the id of the recipe we want to change and the new recipe we want to replace the old one with
+  function handleRecipeChange(id, recipe) {
+    //duplicate the old recipe array so we can mutate it and then setState to it
+    const newRecipes = [...recipes]
+    const index = newRecipes.findIndex(r => r.id === id)
+    newRecipes[index] = recipe;
+    setRecipes(newRecipes)
+  }
+
   function handleRecipeDelete(id) {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
@@ -56,7 +67,8 @@ function App() {
   return (
     <RecipeContext.Provider value={recipeContextValue}>
       <RecipeList recipes={recipes} />
-      <RecipeEdit/>
+      {/* shortciruciting if statement to hide edit window if no recipe is selected */}
+      {selectedRecipe && <RecipeEdit recipe={selectedRecipe} /> }
     </RecipeContext.Provider>
   )
 }

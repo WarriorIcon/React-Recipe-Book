@@ -4,7 +4,7 @@ import { RecipeContext } from './App';
 
 /*Here we could instead pass down the entire recipe object as a prop like recipe={recipe} in RecipeList.js. Then in this Recipe component, destruct the props to {recipe} and access them as {recipe.name} {recipe.cookTime}, etc, without this props deconstruct*/
 export default function Recipe(props) {
-  const { handleRecipeDelete } = useContext(RecipeContext)
+  const { handleRecipeDelete, handleRecipeSelect } = useContext(RecipeContext)
   const {
     id,
     name,
@@ -19,7 +19,11 @@ export default function Recipe(props) {
       <div className="recipe__header">
         <h3 className="recipe__title">{name}</h3>
         <div>
-          <button className="btn btn--primary mr-1">Edit</button>
+          <button 
+            className="btn btn--primary mr-1"
+            onClick={() => handleRecipeSelect(id)}
+            >
+            Edit</button>
           <button className="btn btn--danger"
           onClick={() => handleRecipeDelete(id)}
           >
