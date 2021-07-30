@@ -25,8 +25,8 @@ export default function Recipe(props) {
             >
             Edit</button>
           <button className="btn btn--danger"
-          onClick={() => handleRecipeDelete(id)}
-          >
+            onClick={() => handleRecipeDelete(id)}
+            >
             Delete
           </button>
         </div>
